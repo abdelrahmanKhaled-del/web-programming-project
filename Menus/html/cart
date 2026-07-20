@@ -1,0 +1,100 @@
+<?php
+session_start();
+
+$restaurant_id = $_GET['restaurant_id'] ?? null;
+
+$cart = $_SESSION['cart'] ?? [];
+
+
+if (isset($_GET['remove'])) {
+    $id = $_GET['remove'];
+    unset($_SESSION['cart'][$id]);
+    header("Location: cart.php?restaurant_id=$restaurant_id");
+    exit();
+}
+
+if (isset($_GET['action']) && isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    if ($_GET['action'] == "inc") {
+        $_SESSION['cart'][$id]['qty']++;
+    }
+
+    if ($_GET['action'] == "dec") {
+        $_SESSION['cart'][$id]['qty']--;
+
+        if ($_SESSION['cart'][$id]['qty'] <= 0) {
+            unset($_SESSION['cart'][$id]);
+        }
+    }
+
+    header("Location: cart.php?restaurant_id=$restaurant_id");
+    exit();
+}
+
+$total = 0;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="../css/cart.css">
+</head>
+<body>
+
+<div class="header">
+    <div>🛒 Your Cart</div>
+    <div class="links">
+        <a href="restaurants.php">⬅ Back</a>
+        <a href="my_orders.php">📦 My Orders</a>
+    </div>
+</div>
+
+<div class="container">
+
+<?php if (empty($cart)) { ?>
+
+    <p>Your cart is empty 😢</p>
+
+<?php } else { ?>
+
+<table>
+<tr>
+    <th>Item</th>
+    <th>Price</th>
+    <th>Qty</th>
+    <th>Subtotal</th>
+    <th>Actions</th>
+</tr>
+
+<?php foreach ($cart as $id => $item) {
+    $subtotal = $item['price'] * $item['qty'];
+    $total += $subtotal;
+?>
+<tr>
+    <td><?php echo $item['name']; ?></td>
+    <td><?php echo $item['price']; ?> EGP</td>
+    <td><?php echo $item['qty']; ?></td>
+    <td><?php echo $subtotal; ?> EGP</td>
+    <td>
+        <a class="inc" href="cart.php?action=inc&id=<?php echo $id; ?>&restaurant_id=<?php echo $restaurant_id; ?>">+</a>
+        <a class="dec" href="cart.php?action=dec&id=<?php echo $id; ?>&restaurant_id=<?php echo $restaurant_id; ?>">-</a>
+        <a class="del" href="cart.php?remove=<?php echo $id; ?>&restaurant_id=<?php echo $restaurant_id; ?>">X</a>
+    </td>
+</tr>
+<?php } ?>
+
+<tr>
+    <td colspan="3"><b>Total</b></td>
+    <td colspan="2"><b><?php echo $total; ?> EGP</b></td>
+</tr>
+</table>
+
+<a href="checkout.php" class="checkout">Proceed to Checkout</a>
+
+<?php } ?>
+
+</div>
+
+</body>
+</html>
