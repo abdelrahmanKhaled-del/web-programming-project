@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f9fafc;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #ff6600;
+    margin: 0;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+    background: #555;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #333;
+}
+
+.success-msg {
+    background: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+table th {
+    background: #ff6600;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+table tr:hover {
+    background: #f1f1f1;
+}
+
+td form {
+    display: inline;
+}
+
+.edit-btn {
+    background: #2196F3;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-right: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+    background: #1976D2;
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+}
+
+.actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(76,175,80,0.5);
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    table th, table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .logo {
+        height: 60px;
+    }
+}
