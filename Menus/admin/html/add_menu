@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Menu Item</title>
+    <link rel="stylesheet" href="../css/add_menu.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Admin - Add Menu Item</h1>
+    </div>
+    <div class="container">
+        <div class="card">
+            <h2>New Menu Item</h2>
+            <?php if (!empty($message)) echo "<div class='message'>$message</div>"; ?>
+            <form method="post" action="add_menu.php" enctype="multipart/form-data">
+                <select name="restaurant_id" required>
+                    <option value="">Select Restaurant</option>
+                    <?php while($r = $restaurants->fetch_assoc()) { ?>
+                        <option value="<?php echo $r['id']; ?>">
+                            <?php echo $r['name']; ?>
+                        </option>
+                    <?php } ?>
+                </select>
+                <input type="text" name="name" placeholder="Food Name" required>
+                <input type="text" name="price" placeholder="Price (e.g. 50)" required>
+                <input type="file" name="image" required>
+                <button type="submit">🍔 Add Item</button>
+            </form>
+            <a href="dashboard.php" class="back">⬅ Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
