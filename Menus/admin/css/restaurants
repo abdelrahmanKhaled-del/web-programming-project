@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+.header {
+    background: linear-gradient(135deg, #ff6600, #ff8533);
+    color: white;
+    padding: 25px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    background: #555;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #333;
+}
+
+.restaurant-card {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.restaurant-card h3 {
+    margin: 0;
+    color: #ff6600;
+}
+
+.restaurant-card small {
+    color: #777;
+}
+
+.actions .view {
+    background: #2196F3;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.actions .view:hover {
+    background: #1976D2;
+    transform: scale(1.05);
+}
+
+.empty {
+    text-align: center;
+    color: #999;
+    font-size: 18px;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    .restaurant-card {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .info {
+        flex-direction: column;
+    }
+}
