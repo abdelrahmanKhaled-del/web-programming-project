@@ -1,0 +1,43 @@
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $conn = new mysqli("localhost", "root", "", "menus");
+    if ($conn->connect_error) {
+        $_SESSION['error'] = "Database connection failed!";
+        header("Location: ../html/login.php");
+        exit();
+    }
+
+    $email    = strtolower(trim($_POST['email']));
+    $password = $_POST['password'];
+
+    $stmt = $conn->prepare("SELECT id, firstName, lastName, password FROM customer WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+
+        if ($password === $user['password']) {
+            $_SESSION['id']   = $user['id'];
+            $_SESSION['name'] = $user['firstName'] . " " . $user['lastName'];
+            
+            header("Location: ../html/restaurants.php");
+            exit();
+        } else {
+            $_SESSION['error'] = "Invalid email or password.";
+            header("Location: ../html/login.php");
+            exit();
+        }
+    } else {
+        $_SESSION['error'] = "Invalid email or password.";
+        header("Location: ../html/login.php");
+        exit();
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
